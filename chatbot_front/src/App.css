@@ -13,10 +13,19 @@ a {
   color: unset;
   text-decoration: none;
 }
+
 .gradient__bg {
-  background: url("C:\Users\beckt\OneDrive\Desktop\SE_project\chatbot_CPE\chatbot_front\src\assets\futuristic-metaverse.jpg");
+  background: url("./assets/sofindd.png");
   background-size: cover;
+  /*animation: animateBg 25s linear infinite;*/
+  filter: hue-rotate(80deg);
 }
+
+/*@keyframes animateBg {
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}*/
 
 .gradient__text {
   background: var(--gradient-text);
