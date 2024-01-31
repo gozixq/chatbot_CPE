@@ -1,5 +1,5 @@
 import React from 'react';
-import possibilityImage from '../../assets/possibility.png';
+import possibilityImage from '../../assets/200.png';
 import './possibility.css';
 
 const Possibility = () => (
@@ -7,12 +7,32 @@ const Possibility = () => (
     <div className="gpt3__possibility-image">
       <img src={possibilityImage} alt="possibility" />
     </div>
-    <div className="gpt3__possibility-content">
-      <h4>Request Early Access to Get Started</h4>
-      <h1 className="gradient__text">The possibilities are <br /> beyond your imagination</h1>
-      <p>Yet bed any for travelling assistance indulgence unpleasing. Not thoughts all exercise blessing. Indulgence way everything joy alteration boisterous the attachment. Party we years to order allow asked of.</p>
-      <h4>Request Early Access to Get Started</h4>
-    </div>
+
+    <div class="card-container">
+        <div class="card-header">
+          <div class="img-avatar"></div>
+          <div class="text-chat">Chat CPE</div>
+        </div>
+        <div class="card-body">
+          <div class="messages-container">
+              <div class="message-box left">
+                  <p>Hello, How are you?</p>
+              </div>
+              <div class="message-box right">
+                  <p>I'm good, thanks for asking! How about you?</p>
+              </div>
+          </div>
+          <div class="message-input">
+            <form>
+              <textarea placeholder="Type your message here" class="message-send"></textarea>
+              <button type="submit" class="button-send">Send</button>
+            </form>
+          </div>
+        </div>
+      </div>
+
+    <div class="spacer"></div>
+    
   </div>
 );
 

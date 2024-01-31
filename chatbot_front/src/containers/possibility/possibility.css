@@ -15,6 +15,7 @@
 .gpt3__possibility-image img {
     width: 100%;
     height: 100%;
+    filter: hue-rotate(10deg);
 }
 
 .gpt3__possibility-content {
@@ -81,3 +82,114 @@
     }
 }
 
+
+.spacer {
+    height: 10px; /* Adjust this value as needed */
+    
+}
+
+/*///////////////////////////////////////////*/
+
+
+@font-face {
+  font-family: "Relax";
+  src: url("./../../assets/Azonix-1VB0.otf")
+    format("opentype");
+}
+
+.card-container {
+  background: linear-gradient(90deg, rgb(55, 94, 145) 0%, rgb(120, 86, 140) 49%, rgb(5, 41, 48) 100%);
+    border-radius: 20px;
+    padding: 15px;
+    margin: 8px;
+    display: flex;
+    flex-direction: column;
+    width: 800px;
+    height: 350px;
+    color: rgb(234, 234, 234);
+    transition: 0.8s;
+    box-shadow: 0px 0px 60px #1f4c65;
+    -webkit-box-reflect: below 10px linear-gradient(to bottom, rgba(0,0,0,0.0), rgba(0,0,0,0.4));
+    z-index: -50;
+  }
+  
+  .card-header {
+    display: flex;
+    align-items: center;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #ffffff;
+  }
+  
+  .card-header .img-avatar {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    margin-right: 20px;
+    background:linear-gradient(90deg, rgb(228, 238, 251) 0%, rgb(177, 149, 194) 49%, rgb(25, 73, 83) 100%);
+  }
+  
+  .card-header .text-chat {
+    color: rgb(255, 255, 255);
+    margin: 0;
+    font-size: 20px;
+    font-family: "Relax", sans-serif;
+  }
+  
+  .card-body {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .messages-container {
+    padding: 15px;
+  }
+  
+  .message-box {
+    padding: 10px;
+    margin-bottom: 5px;
+    border-radius: 10px;
+  }
+  
+  .message-box.left {
+    background-color: #f1f1f1;
+    color: black;
+    font-size: 18px;
+    left: 0;
+  }
+  
+  .message-box.right {
+    background-color: #8095a2;
+    color: #000000;
+    font-size: 18px;
+    right: 0;
+  }
+  
+  .message-input {
+    padding: 5px;
+    border-top: 1px solid #ccc;
+  }
+  
+  .message-input .message-send {
+    width: 100%;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    resize: none;
+  }
+  
+  .message-input .button-send {
+    background-color: #2b394c;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+    border-radius: 10px;
+    font-size: 16px;
+  }
+  
+  .message-input .button-send:hover {
+    background-color: #f1f1f1;
+    color: #3b3636;
+  }
+  

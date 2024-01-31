@@ -21,8 +21,6 @@ const Blog = () => {
 
       <div className="comment-box-container">
         <div className="comment-box">
-        <div class="circle"></div>
-        <div class="circle"></div>
           <textarea
             className="comment-input"
             placeholder="Write your comment here..."
