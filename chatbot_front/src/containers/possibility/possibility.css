@@ -14,7 +14,7 @@
 
 .gpt3__possibility-image img {
   width: 100%;
-  height: 100%;
+  height: 80%;
   filter: hue-rotate(10deg);
 }
 
@@ -109,6 +109,7 @@
   height: 350px;
   color: rgb(234, 234, 234);
   transition: 0.8s;
+  margin-top: -3rem;
   box-shadow: 0px 0px 60px #1f4c65;
   -webkit-box-reflect: below 10px
     linear-gradient(to bottom, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.4));
@@ -159,14 +160,16 @@
 .message-box.Bot {
   background-color: #f1f1f1;
   color: black;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: var(--font-family);
   left: 0;
 }
 
 .message-box.User {
-  background-color: #8095a2;
+  background-color: #bed9eb;
   color: #000000;
-  font-size: 18px;
+  font-size: 16px;
+  font-family: var(--font-family);
   right: 0;
 }
 
@@ -190,7 +193,7 @@
   padding: 10px;
   border: none;
   border-radius: 10px;
-  resize: none;
+  
   margin-right: 10px; /* Add margin between input and button */
 }
 

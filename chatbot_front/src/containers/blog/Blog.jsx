@@ -63,6 +63,7 @@ const Blog = () => {
               <div class="notiborderglow"></div>
               <div class="notititle">Anonymous</div>
               <div class="notibody">{item.message}</div>
+              <div class="spacer"></div>
             </div>
           ))}
         </div>

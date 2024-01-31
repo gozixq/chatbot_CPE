@@ -139,6 +139,7 @@ const Possibility = () => {
                   value={inputText}
                   onChange={handleInputChange}
                 ></textarea>
+                <div className="spacer"></div>
                 <button type="submit" className="button-send">
                   Send
                 </button>

@@ -5,7 +5,8 @@
     flex-direction: row;
 
     padding: 2rem;
-    margin: 4rem;
+    margin: 5rem;
+    margin-top: 10rem;
     border-radius: 1rem;
     background: var(--gradient-bar)
 }
@@ -20,7 +21,7 @@
 
 .gpt3__cta-content p {
     font-family: var(--font-family);
-    font-size: 12px;
+    font-size: 18px;
     line-height: 30px;
     font-weight: 500;
 }
@@ -73,12 +74,12 @@
     }
 
     .gpt3__cta-content h3 {
-        font-size: 18px;
+        font-size: 19px;
         line-height: 32px;
     }
 
     .gpt3__cta-btn button {
-        font-size: 14px;
+        font-size: 16px;
         line-height: 28px;
     }
 }

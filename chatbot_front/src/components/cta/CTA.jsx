@@ -7,7 +7,6 @@ const CTA = () => (
       <p>Log in with CMU Account to access our community.</p>
       <h3>Anonymous Chat Board</h3>
     </div>
-    <div className="gpt3__cta-btn"></div>
   </div>
 );
 

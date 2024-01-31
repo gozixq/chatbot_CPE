@@ -2,6 +2,8 @@
 .comment-box-container {
     display: flex;
     flex-direction: column; /* Change from row to column */
+    margin-top: -7rem;
+    
 }
 
 .comment-box {
