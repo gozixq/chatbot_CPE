@@ -21,21 +21,37 @@ const Blog = () => {
 
       <div className="comment-box-container">
         <div className="comment-box">
+        <div class="circle"></div>
+        <div class="circle"></div>
           <textarea
             className="comment-input"
             placeholder="Write your comment here..."
             value={comment}
             onChange={onChangeHandler}
-          ></textarea>
+          >
+          </textarea>
+          <div class="spacer"></div>
           <button className="comment-button" onClick={onClickHandler}>
-            Submit Comment
-          </button>
+              Comment
+          <div class="hoverEffect">
+          <div>
+          </div>
+          </div></button>
 
-          {comments.map((text, index) => (
-        <div key={index} className="comment-container">
-        {text}
-        </div>
-        ))}
+          <div class="spacer"></div>
+          {[...comments].reverse().map((text, index) => (
+            <div>
+              <div class="spacer"></div> {/* Spacer div added here */}
+              <div key={index} className="notification">
+                <div class="notiglow"></div>
+                <div class="notiborderglow"></div>
+                <div class="notititle">Anonymous</div>
+                <div class="notibody">{text}</div>
+              </div>
+              <div class="spacer"></div> {/* Spacer div added here */}
+            </div>
+          ))}
+
         </div>
         
       </div>
