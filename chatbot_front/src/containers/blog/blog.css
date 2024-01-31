@@ -1,29 +1,10 @@
-/* blog.css */
 
-.gpt3__blog {
-    display: flex;
-    flex-direction: column;    
-}
-
-.gpt3__blog-heading {
-    width: 100%;
-    text-align: left;
-    margin-bottom: 5rem;
-}
-
-.gpt3__blog-heading h1 {
-    font-size: 62px;
-    line-height: 75px;
-    font-family: var(--font-family);
-    font-weight: 800;
-}
-
-.gpt3__blog-container {
+.comment-box-container {
     display: flex;
     flex-direction: column; /* Change from row to column */
 }
 
-.gpt3__comment-box {
+.comment-box {
     margin-bottom: 20px;
 }
 
@@ -40,20 +21,7 @@
     cursor: pointer;
 }
 
-.gpt3__comments .comment {
-    margin-bottom: 10px;
-}
 
-.gpt3__blog-container_groupA {
-    flex: 1; /* Change flex property to take full width */
-    margin-right: 2rem;
-}
-
-.gpt3__blog-container_groupB {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-gap: 2rem;
-}
 
 
 

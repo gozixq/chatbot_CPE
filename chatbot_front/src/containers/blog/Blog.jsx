@@ -5,19 +5,22 @@ const Blog = () => {
   const [comment, setComment] = useState('');
   const [comments, setComments] = useState([]);
 
-  const onClickHandler = () =>{
-    setComments((comments) => [...comments,comment]);
-  }
+  const onClickHandler = () => {
+    if (comment.trim() !== '') {
+      setComments((prevComments) => [...prevComments, comment]);
+      setComment('');
+    }
+  };
 
   const onChangeHandler = (e) =>{
     setComment(e.target.value);
   }
 
   return (
-    <div className="gpt3__blog section__padding" id="blog">
+    <div className="section__padding" id="blog">
 
-      <div className="gpt3__blog-container">
-        <div className="gpt3__comment-box">
+      <div className="comment-box-container">
+        <div className="comment-box">
           <textarea
             className="comment-input"
             placeholder="Write your comment here..."
@@ -27,12 +30,14 @@ const Blog = () => {
           <button className="comment-button" onClick={onClickHandler}>
             Submit Comment
           </button>
+
+          {comments.map((text, index) => (
+        <div key={index} className="comment-container">
+        {text}
         </div>
-          {comments.map((text) => (
-            <div className="comment-container">
-              {text}
-            </div>
-          ))}
+        ))}
+        </div>
+        
       </div>
     </div>
   );
