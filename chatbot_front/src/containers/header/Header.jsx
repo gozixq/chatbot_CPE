@@ -1,8 +1,6 @@
 import React from "react";
 import ai from "../../assets/1000.png";
 import "./header.css";
-import Lottie from "lottie-react";
-import animationData from "./../../assets/chat.json"
 
 const Header = () => (
   <div className="gpt3__header section__padding" id="home">
@@ -13,12 +11,10 @@ const Header = () => (
         Computer Engineering at Chiangmai University!
       </p>
     </div>
-    
+
     <div className="gpt3__header-image">
       <img src={ai} />
-      <Lottie animationData={animationData}/>
     </div>
-
   </div>
 );
 
