@@ -1,91 +1,37 @@
-* {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-  scroll-behavior: smooth;
+@import url("https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+  font-family: "Relax";
+  src: url("./assets/fonts/asu.otf") format("woff2");
+}
+.heroBackground {
+  background: url("./assets/images/heroSection.jpg");
+  background-size: cover;
+  background-position: center;
+  /* filter: hue-rotate(80deg); */
 }
 
 body {
-  background: var(--color-bg);
+  font-family: "Open Sans", "Helvetica Neue", sans-serif;
+  @apply selection:bg-white/70 selection:text-black;
 }
 
-a {
-  color: unset;
-  text-decoration: none;
+::-webkit-scrollbar {
+  @apply h-1.5 w-2 bg-black;
 }
 
-.gradient__bg {
-  background: url("./assets/sofindd.png");
-  background-size: cover;
-  /*animation: animateBg 25s linear infinite;*/
-  filter: hue-rotate(80deg);
+/* Handle */
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-600 rounded-full absolute right-0 z-50;
 }
-
-/*@keyframes animateBg {
-  100% {
-    filter: hue-rotate(360deg);
-  }
-}*/
-
-.gradient__text {
-  background: var(--gradient-text);
-  background-clip: text;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  @apply bg-primary/80;
 }
-
-.section__padding {
-  padding: 4rem 6rem;
-}
-
-.section__margin {
-  margin: 4rem 6rem;
-}
-
-.scale-up-center {
-  -webkit-animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1)
-    both;
-  animation: scale-up-center 0.4s cubic-bezier(0.39, 0.575, 0.565, 1) both;
-}
-
-@-webkit-keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-
-@keyframes scale-up-center {
-  0% {
-    -webkit-transform: scale(0.5);
-    transform: scale(0.5);
-  }
-  100% {
-    -webkit-transform: scale(1);
-    transform: scale(1);
-  }
-}
-
-@media screen and (max-width: 700px) {
-  .section__padding {
-    padding: 4rem;
-  }
-
-  .section__margin {
-    margin: 4rem;
-  }
-}
-
-@media screen and (max-width: 550px) {
-  .section__padding {
-    padding: 4rem 2rem;
-  }
-
-  .section__margin {
-    margin: 4rem 2rem;
-  }
+.chat_____scrollbar::-webkit-scrollbar {
+  @apply w-2 h-0 bg-transparent;
 }
