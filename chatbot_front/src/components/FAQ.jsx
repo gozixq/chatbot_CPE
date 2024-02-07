@@ -14,18 +14,18 @@ const faqContent = [
 ];
 const FAQ = () => {
   return (
-    <div className="flex flex-col pt-32 bg-black text-white" id="faq">
+    <div className="flex flex-col py-32 bg-black text-white px-8" id="faq">
       <div className="w-full flex justify-center items-center">
-        <span className="text-5xl font-bold text-transparent bg-clip-text w-fit bg-gradient-to-l from-gray-100 from-10% via-gray-200 via-30% to-gray-500 to-90%">
+        <span className="lg:text-5xl text-2xl font-bold text-transparent bg-clip-text w-fit bg-gradient-to-l from-gray-100 from-10% via-gray-200 via-30% to-gray-500 to-90%">
           Frequently Asked Question
         </span>
       </div>
-      <div className="flex justify-evenly items-center gap-6 mt-14">
+      <div className="flex lg:flex-row flex-col lg:justify-evenly items-center gap-6 mt-14">
         {faqContent.map((faq, i) => (
           <div key={i} className="flex w-96">
-            <div className="flex flex-col gap-3 justify-start items-start">
-              <span className="text-3xl">{faq.question}</span>
-              <p className=" text-primary">{faq.answer}</p>
+            <div className="flex flex-col lg:gap-3 justify-start items-start">
+              <span className="lg:text-3xl text-xl">{faq.question}</span>
+              <p className="lg:text-base text-sm text-primary">{faq.answer}</p>
             </div>
           </div>
         ))}

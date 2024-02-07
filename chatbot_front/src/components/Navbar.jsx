@@ -73,11 +73,11 @@ const Navbar = () => {
       <div
         className={
           nav
-            ? "fixed left-0 top-0 justify-center w-full h-screen items-center drop-shadow-2xl z-50 duration-1000 transition-all backdrop-blur-sm bg-gray-500/90"
+            ? "fixed left-0 top-0 justify-center w-full h-screen items-center drop-shadow-2xl z-50 duration-1000 transition-all backdrop-blur-sm bg-[#0f0f0f]"
             : "fixed left-[-150%] top-0 w-[100%] h-screen z-50 duration-700 transition-all"
         }
       >
-        <div className="z-50 flex items-center py-5 drop-shadow-lg border-b-[40%] bg-gray-500">
+        <div className="z-50 flex items-center py-5 drop-shadow-lg border-b-[40%] bg-black">
           <div className="flex items-center w-full justify-center px-10">
             <button
               href="/"
@@ -88,7 +88,7 @@ const Navbar = () => {
           </div>
           <SlClose
             onClick={() => setNav(!nav)}
-            size={35}
+            size={25}
             className="fixed right-0 mx-10 rounded-full cursor-pointer text-red-600 drop-shadow-md"
           />
         </div>
@@ -97,7 +97,7 @@ const Navbar = () => {
             <a
               key={i}
               href={button.url}
-              className="border-b-2 border-opacity-0 border-fuchsia-500 hover:border-opacity-100 duration-300 items-center flex w-fit"
+              className="border-b-2 border-opacity-0 border-primary hover:border-opacity-100 duration-300 items-center flex w-fit"
             >
               {button.title}
             </a>
