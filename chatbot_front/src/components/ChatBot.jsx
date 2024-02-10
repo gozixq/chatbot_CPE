@@ -146,9 +146,9 @@ const ChatBot = () => {
                 ))}
               </div>
               <div className="w-full pt-5">
-                <form onSubmit={handleSubmit} className="flex gap-5">
+                <form onSubmit={handleSubmit} className="flex gap-5 ">
                   <textarea
-                    className="bg-transparent resize-none rounded-md w-full p-2 focus:outline-none border-[1px] border-white/60 focus:border-primary/60 focus:ring-none"
+                    className="bg-transparent resize-none rounded-md w-full h-16 p-3 focus:outline-none border-[1px] border-white/60 focus:border-primary/60 focus:ring-none"
                     placeholder="Write your message here..."
                     value={inputText}
                     onChange={handleInputChange}
