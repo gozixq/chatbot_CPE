@@ -6,10 +6,10 @@ import { SlClose } from "react-icons/sl";
 const Navbar = () => {
   const navbarButton = [
     { title: "Home", url: "#home" },
-    { title: "FAQ", url: "#faq" },
     { title: "Chat Bot", url: "#chatbot" },
+    { title: "FAQ", url: "#faq" },
     { title: "Map", url: "#map" },
-    { title: "Dashboard", url: "#dashboard" },
+    { title: "Comments", url: "#comments" },
   ];
 
   const [nav, setNav] = useState(false);
