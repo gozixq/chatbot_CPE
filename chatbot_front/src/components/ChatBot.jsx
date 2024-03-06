@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from "react";
 import chatBot from "../assets/images/chatBot2.png";
 import { FaPaperPlane } from "react-icons/fa";
-
-const API_KEY = "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";
+import OpenAI from "openai";
 
 // Function to fetch questions from the API
 const fetchQuestions = async () => {
@@ -18,37 +17,9 @@ const fetchQuestions = async () => {
   }
 };
 
-async function callOpenAIAPI() {
-  let abdul = "";
-  console.log("Calling the OpenAI API");
-
-  const APIBody = {
-    model: "ft:davinci-002:personal::8n375XlC",
-    prompt: "อธิบายความหมายของ การรักใครสักคน",
-    temperature: 1.2,
-    max_tokens: 100,
-    top_p: 1.0,
-    frequency_penalty: 0.0,
-    presence_penalty: 0.0,
-  };
-
-  await fetch("https://api.openai.com/v1/completions", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      Authorization: "Bearer " + API_KEY,
-    },
-    body: JSON.stringify(APIBody),
-  })
-    .then((data) => {
-      return data.json();
-    })
-    .then((data) => {
-      console.log(data.choices[0].text);
-      abdul = data.choices[0].text;
-    });
-  return abdul;
-}
+const openai = new OpenAI({
+ apiKey: process.env.REACT_APP_OPENAI_API_KEY,dangerouslyAllowBrowser: true
+});
 
 const ChatBot = () => {
   const [inputText, setInputText] = useState("");
@@ -76,37 +47,55 @@ const ChatBot = () => {
   const handleInputChange = (e) => setInputText(e.target.value);
 
   const handleSubmit = async (e) => {
-    e.preventDefault(); // Prevent the form from submitting in the traditional way
-
-    const userMessage = { text: inputText, sender: "User" }; // Prepare the user's message
-    setMessages((prevMessages) => [...prevMessages, userMessage]); // Add the user's message to the chat
-
-    if (inputText === "แชท") {
-      // If the user input matches "อับดุลเอ้ย", call the OpenAI API
-      const data = await callOpenAIAPI();
-      // Add the OpenAI response to the chat
-      setMessages((prevMessages) => [
-        ...prevMessages,
-        { text: data, sender: "Bot" },
-      ]);
+    e.preventDefault();
+    const userMessage = { text: inputText, sender: "User" };
+    setMessages((prevMessages) => [...prevMessages, userMessage]);
+  
+    const matchingQuestion = questions.find((q) =>
+      q.question?.toLowerCase().includes(inputText?.toLowerCase())
+    );
+  
+    if (matchingQuestion) {
+      setMessages((prevMessages) => [...prevMessages, { text: matchingQuestion.answerTh, sender: "Bot" }]);
+      setInputText("");
     } else {
-      // For other inputs, attempt to find a matching question in the predefined questions list
-      const matchingQuestion = questions.find((q) =>
-        q.question.toLowerCase().includes(inputText.toLowerCase())
-      );
-
-      const botResponse = matchingQuestion
-        ? { text: matchingQuestion.answerTh, sender: "Bot" }
-        : {
-            text: "สวัสดี! ฉันสามารถช่วยอะไรได้บ้าง? กรุณาระบุคำถามของคุณ",
-            sender: "Bot",
-          }; // สวัสดี! ฉันสามารถช่วยอะไรได้บ้าง? กรุณาระบุคำถามของคุณ / ไม่พบคำตอบที่ตรงกับคำถามของคุณ
-
-      setMessages((prevMessages) => [...prevMessages, botResponse]);
+      // Inform the user that the bot is searching for an answer
+      setMessages((prevMessages) => [...prevMessages, { text: "...รอสักครู่", sender: "Bot" }]);
+  
+      try {
+        const response = await openai.chat.completions.create({
+          model: "ft:gpt-3.5-turbo-1106:personal:messages30xtest:8zg6v8tA",
+          messages: [
+            {
+              "role": "system",
+              "content": "You are a CPE-CMU FAQs chatbot."
+            },
+            {
+              "role": "user",
+              "content": inputText
+            }
+          ],
+          temperature: 0.55,
+          max_tokens: 256,
+          top_p: 1,
+          frequency_penalty: 0,
+          presence_penalty: 0,
+        });
+        
+        // Update the chat with the response from OpenAI
+        console.log(response.choices[0].message.content);
+        setMessages((prevMessages) => [...prevMessages, { text: response.choices[0].message.content, sender: "Bot" }]);
+      } catch (error) {
+        console.error("Error fetching response from OpenAI:", error);
+        // Handle the error case, maybe inform the user that the bot couldn't find an answer
+        setMessages((prevMessages) => [...prevMessages, { text: "ขออภัย แชทบอทถูกปิดความสามารถการค้นหาในขนาดนี้", sender: "Bot" }]);
+      }
+  
+      setInputText("");
     }
-
-    setInputText("");
   };
+  
+  
   const Message = ({ text, sender }) => (
     <div
       className={`flex items-start w-full p-4 ${
