@@ -21,8 +21,8 @@ const App = () => (
     {/* <CTA /> */}
     {/* <Blog /> */}
 
-    {/* <div className="fixed bottom-0 left-0 w-full h-1 bg-green-500 sm:bg-yellow-500 md:bg-orange-500 lg:bg-red-500" />
-  </div> */}
+    {/* <div className="fixed bottom-0 left-0 w-full h-1 bg-green-500 sm:bg-yellow-500 md:bg-orange-500 lg:bg-red-500" /> */}
+  </div>
 );
 
 export default App;
