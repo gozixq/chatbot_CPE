@@ -6,6 +6,7 @@ import { CTA } from "./components";
 import Navbar from "./components/Navbar";
 import Comments from "./components/Comments";
 import FAQ from "./components/FAQ";
+import { useEffect } from "react";
 
 import "./App.css";
 

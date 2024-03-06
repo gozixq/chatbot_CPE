@@ -40,7 +40,6 @@ router.post("/", async (req, res) => {
             firstName: 'khomsan',
             lastName: 'Suangkaew',
             studentId: '630610720',
-            token: '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',
           }
       );
 
