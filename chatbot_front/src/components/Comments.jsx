@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import axios from "axios";
 import { FiLogIn } from "react-icons/fi";
 import { FaPaperPlane } from "react-icons/fa";
 
@@ -7,61 +8,58 @@ const Comments = () => {
   const [comment, setComment] = useState("");
   const [comments, setComments] = useState([]);
   const [apiData, setApiData] = useState([]);
-
   const [signedInLaew, setsignedInLaew] = useState(false);
+  const [res, setRes] = useState("");
 
-  useEffect(() => {
-    fetch(
-      "https://api.sheety.co/bacafe43412f599ef9dec1348d36337e/anonymousChat/sheet1"
-    )
-      .then((response) => response.json())
-      .then((data) => {
-        const lastFourComments = data.sheet1.slice(-4).reverse();
-        setApiData(lastFourComments);})
-      .catch((error) => console.error("Error fetching data:", error));
-  }, []);
+  const fetchData = async () => {
+    const url = "https://api.sheety.co/bacafe43412f599ef9dec1348d36337e/anonymousChat/sheet1";
+    const res = await axios.get(url);
+    setApiData(res.data.sheet1.slice(-4));
+  }
 
-  // Function to handle changes in the textarea
-  const handleChange = (e) => {
-    setComment(e.target.value); // Update the comment state with the new text
-  };
-
-  const handleSubmit = (e) => {
+  // Ensure that a comment is present before making a POST request
+  const postData = async (e) => {
     e.preventDefault(); // Prevent default form submission behavior
-    
+  
     // Ensure that a comment is present before making a POST request
     if (comment.trim() !== "") {
-      const url = 'https://api.sheety.co/bacafe43412f599ef9dec1348d36337e/cpeFaQsSheets/sheet1';
-      const body = {
-        sheet1: {
-          message: comment, // Use the appropriate property name as per your Sheety setup
-          // If your sheet requires id and timestamp, you might need to generate id dynamically or let Sheety auto-generate it
-          // timestamp can be the current time
-          // id: newId, // Generate or omit if Sheety auto-generates it
-          timestamp: new Date().toISOString()
-        }
-      };
-  
-      fetch(url, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(body)
-      })
-      .then(response => response.json())
-      .then(json => {
-        console.log('Post successful:', json.sheet1);
-        // Here you could re-fetch the comments or add the new comment to your local state
-        // For now, let's assume you want to re-fetch the comments
-      })
-      .catch(error => {
+      const url = "https://api.sheety.co/bacafe43412f599ef9dec1348d36337e/anonymousChat/sheet1";
+      
+      try {
+        // Fetching existing comments to determine the latest ID
+        const existingCommentsResponse = await axios.get(url);
+        const existingComments = existingCommentsResponse.data.sheet1;
+        const latestId = existingComments.length > 0 ? existingComments[existingComments.length - 1].id + 1 : 1;
+        
+        let data = {
+          sheet1: {
+            message: comment, 
+            timestamp: new Date().toISOString(),
+            id: latestId
+          }
+        };
+
+        // Making a POST request using Axios
+        const res = await axios.post(url, data);
+        setRes(res);
+        console.log('Post successful:', res.data);
+      } catch (error) {
         console.error('Error posting new comment:', error);
-      });
+        // Handle error here (e.g., display error message to the user)
+      }
       
       // Clear the textarea after submission
       setComment("");
     }
+  };
+
+  useEffect(() => {
+    fetchData();
+  }, [res])
+
+  // Function to handle changes in the textarea
+  const handleChange = (e) => {
+    setComment(e.target.value); // Update the comment state with the new text
   };
 
   const onChangeHandler = (e) => {
@@ -107,44 +105,22 @@ const Comments = () => {
           )}
         </div>
         
+        {apiData?.map((val) => (
           <div className="flex flex-col gap-8 justify-between lg:pl-16">
               <div className=" flex flex-col justify-start items-start border-l-2 border-primary px-5"
               >
                 <span className="font-black">Anonymous</span>
-                <p>{/*apiData[0].message*/}</p>
-                <p className="text-gray-500">{/*apiData[0].timestamp*/}</p>
+                <p>{val.message}</p>
+                <p className="text-gray-500">{val.timestamp}</p>
               </div>
           </div>
+        ))}
+          
           <div className="flex flex-col gap-8 justify-between lg:pl-16">
-              <div className=" flex flex-col justify-start items-start border-l-2 border-primary px-5"
-              >
-                <span className="font-black">Anonymous</span>
-                <p>{/*apiData[0].message*/}</p>
-                <p className="text-gray-500">{/*apiData[0].timestamp*/}</p>
-              </div>
-          </div>
-          <div className="flex flex-col gap-8 justify-between lg:pl-16">
-              <div className=" flex flex-col justify-start items-start border-l-2 border-primary px-5"
-              >
-                <span className="font-black">Anonymous</span>
-                <p>{/*apiData[0].message*/}</p>
-                <p className="text-gray-500">{/*apiData[0].timestamp*/}</p>
-              </div>
-          </div>
-          <div className="flex flex-col gap-8 justify-between lg:pl-16">
-              <div className=" flex flex-col justify-start items-start border-l-2 border-primary px-5"
-              >
-                <span className="font-black">Anonymous</span>
-                <p>{/*apiData[0].message*/}</p>
-                <p className="text-gray-500">{/*apiData[0].timestamp*/}</p>
-              </div>
-          </div>
-        
-          <div className="flex flex-col gap-8 justify-between lg:pl-16">
-      <form onSubmit={handleSubmit} className="flex gap-5">
+      <form onSubmit={postData} className="flex gap-5">
         <textarea
           value={comment} // Bind the value of the textarea to the comment state
-          onChange={handleChange} // Call handleChange function when the textarea value changes
+          onChange={handleChange} // Call setComment function when the textarea value changes
           placeholder="Write your comment here..."
           className="p-3 rounded-lg border-[1px] border-white/60 focus:border-primary/60 focus:ring-0 focus:ring-primary/10 focus:ring-offset-transparent/10 focus:ring-offset-primary/10 focus:ring-offset-2 focus:outline-none bg-transparent resize-none w-full"
         />
